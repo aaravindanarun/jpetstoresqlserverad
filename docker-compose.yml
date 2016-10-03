@@ -1,12 +1,21 @@
 version: '2'
 services:
-  jpetstore-tomcat:
-    build: .
-    build: 
-      context: .
-      dockerfile: jpetstoreapp.Dockerfile
+  jpetstore-mysql:
+    image: aaravindanarun/jpetstore-mysql:latest
     container_name: jpetstore-app
-    image: jpetstore-tomcat
+    restart: always
+    environment:
+         - MYSQL_ROOT_PASSWORD=admin
+         - MYSQL_DATABASE=jpetstore
+         - MYSQL_USER=jpetstore
+         - MYSQL_PASSWORD=jpetstore
+    ports:
+         - "3306:3306"
+
+  
+  jpetstore-tomcat:
+    image: aaravindanarun/jpetstore-tomcat:latest
+    container_name: jpetstore-db
     environment:
          - MYSQL_DATABASE=jpetstore
          - MYSQL_USER=jpetstore
@@ -17,20 +26,4 @@ services:
         - jpetstore-mysql
     links:
         - jpetstore-mysql
-    
-  jpetstore-mysql:
-    build: .
-    build:
-       context: .
-       dockerfile: jpetstoremysql.Dockerfile
-    container_name: jpetstore-db
-    image: jpetstore-mysql
-    environment:
-         - MYSQL_ROOT_PASSWORD=admin
-         - MYSQL_DATABASE=jpetstore
-         - MYSQL_USER=jpetstore
-         - MYSQL_PASSWORD=jpetstore
-    volumes:
-         - /docker/mysql/:/var/lib/mysql/
-    ports:
-         - 3306:3306
+    restart: always 
