@@ -1,0 +1,60 @@
+{
+  "id": "azure",
+  "groups": [
+    {
+      "apps": [
+        {
+          "id": "jpetstoreweb",
+          "cpus": 0.5,
+          "mem": 512,
+          "instances": 1,
+          "ports": [
+            8080
+          ],
+          "requirePorts": true,
+          "container": {
+            "docker": {
+              "image": "aaravindanarun/jpetstore-tomcat:latest",
+              "network": "HOST",
+              "forcePullImage": true
+            },
+            "type": "DOCKER"
+          },
+		  "env": {
+			"MYSQL_PASSWORD": "jpetstore",
+			"MYSQL_DATABASE": "jpetstore",
+			"MYSQL_USER" : "jpetstore"
+		  },
+          "dependencies": [
+            "/azure/acsdemo/jpetstoredb"
+          ]
+        },
+        {
+          "id": "jpetstoredb",
+          "cpus": 0.5,
+          "mem": 512,
+          "instances": 1,
+          "ports": [
+            3306
+          ],
+          "requirePorts": true,
+          "container": {
+            "docker": {
+              "image": "aaravindanarun/jpetstore-mysql:latest",
+              "network": "HOST",
+              "forcePullImage": true
+            },
+            "type": "DOCKER"
+          },
+		  "env": {
+			"MYSQL_ROOT_PASSWORD": "admin",
+			"MYSQL_DATABASE": "jpetstore",
+			"MYSQL_USER" : "jpetstore",
+			"MYSQL_PASSWORD": "jpetstore"
+		  }
+        }
+      ],
+      "id": "acsdemo"
+    }
+  ]
+}
