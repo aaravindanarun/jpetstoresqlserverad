@@ -32,27 +32,14 @@
         <jdbc:script location="classpath:database/jpetstore-hsqldb-dataload.sql"/>
     </jdbc:embedded-database> -->
 
-   <bean id="baseContextProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean id="baseContextProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	<property name="location" value="#{T(org.mybatis.jpetstore.persistence.utility).getConfigFile('config.properties')}"/>
-   </bean>
-   <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-	<property name="url" value="${my.url}"/>
-	<property name="username" value="${my.username}"/>
-	<property name="password" value="${my.password}"/>
-	<!--
-	  <property name="url" value="jdbc:mysql://10.232.151.137:3306/jpetstore" /> 
-	-->
-	<!--  <property name="username" value="root" />  -->
-	<!--  <property name="password" value="nova" />  -->
-  <!--  </bean> -->
-	
+    </bean>
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
 	<property name="url" value="${my.url}"/>
 	<property name="username" value="${my.username}"/>
 	<property name="password" value="${my.password}"/>
-	
     </bean> 
 
     <!-- transaction manager, use JtaTransactionManager for global tx -->
