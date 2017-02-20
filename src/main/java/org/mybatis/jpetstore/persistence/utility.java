@@ -7,18 +7,25 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.io.File;
+import java.io.IOException;
 @Component
 public class utility {
 
 	private static final String DELIMITER = "/";
-	private static String CONFIG_LOCATION = "d:/home/site/wwwroot/webapps";
-
+	//getting the Current Working directory path of the Project
+	private static String currentDirectory = System.getProperty("user.dir");
+	
+	//Setting the Configuration file location
+	private static String CONFIG_LOCATION =currentDirectory;
+	
 	public static Resource getConfigFile(String fileName)
 			throws FileNotFoundException {
 		if (!StringUtils.hasText(fileName)) {
 			throw new FileNotFoundException("File is empty");
 		}
-		System.setProperty(CONFIG_LOCATION, "d:/home/site/wwwroot/webapps");
+		
+		System.setProperty(CONFIG_LOCATION, CONFIG_LOCATION );
 	
 		return  new FileSystemResource(
 				System.getProperty(CONFIG_LOCATION) + DELIMITER + fileName);
