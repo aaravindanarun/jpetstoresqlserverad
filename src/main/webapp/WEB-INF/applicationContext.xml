@@ -35,7 +35,7 @@
    <bean id="baseContextProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	<property name="location" value="#{T(org.mybatis.jpetstore.persistence.utility).getConfigFile('config.properties')}"/>
    </bean>
-   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+   <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 	<property name="url" value="${my.url}"/>
 	<property name="username" value="${my.username}"/>
@@ -45,6 +45,14 @@
 	-->
 	<!--  <property name="username" value="root" />  -->
 	<!--  <property name="password" value="nova" />  -->
+  <!--  </bean> -->
+	
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	<property name="url" value="${my.url}"/>
+	<property name="username" value="${my.username}"/>
+	<property name="password" value="${my.password}"/>
+	
     </bean> 
 
     <!-- transaction manager, use JtaTransactionManager for global tx -->
