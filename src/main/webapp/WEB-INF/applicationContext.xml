@@ -36,7 +36,7 @@
 	<property name="location" value="#{T(org.mybatis.jpetstore.persistence.utility).getConfigFile('config.properties')}"/>
     </bean>
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver"/>
 	<property name="url" value="${my.url}"/>
 	<property name="username" value="${my.username}"/>
 	<property name="password" value="${my.password}"/>
